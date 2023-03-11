@@ -3,10 +3,10 @@ declare global {
         interface ProcessEnv{
             botToken: string;
             guildId: string;
-            enviroment: "dev" | "prod" | "staging"
+            enviroment: 'dev' | 'prod' | 'staging'
         }
     }
 }
 
 
-export {}
+export {};

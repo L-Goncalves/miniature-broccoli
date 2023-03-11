@@ -9,7 +9,8 @@
     "start:prod": "node dist/index.js",
     "build": "tsc",
     "watch": "tsc -w",
-    "lint": "eslint \"**/*.{ts,tsx}\""
+    "lint": "eslint \"**/*.{ts,tsx}\"",
+    "lint:fix": "eslint --fix --ext .ts "
   },
   "author": "",
   "license": "ISC",
