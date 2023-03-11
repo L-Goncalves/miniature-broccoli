@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+    "lib": ["ES2019"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "es2018",
+    "outDir": "dist",
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    },
+    "include": ["src/**/*.ts", "src/**/*.json", "src/**/*.d.ts", "enviroment.d.ts"],
+    "exclude": ["node_modules", "**/*.spec.ts"]
+  }
