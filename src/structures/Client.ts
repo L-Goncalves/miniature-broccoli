@@ -6,11 +6,8 @@ import {
 } from 'discord.js';
 import { CommandType } from '../typings/Command';
 import glob from 'glob';
-import { promisify } from 'util';
 import { RegisterCommandsOptions } from '../typings/client';
 import { Event } from './Event';
-
-const globPromise = promisify(glob);
 
 export class ExtendedClient extends Client {
     commands: Collection<string, CommandType> = new Collection();
@@ -40,18 +37,19 @@ export class ExtendedClient extends Client {
     async registerModules() {
         // Commands
         const slashCommands: ApplicationCommandDataResolvable[] = [];
-        const commandFiles: any = await globPromise(
-            `${__dirname}/../commands/*/*{.ts,.js}`, {}
+
+        const commandFiles: any = await glob(
+            `${__dirname}/../commands/*/*{.ts,.js}`, {windowsPathsNoEscape: true}
         );
+
         commandFiles.forEach(async (filePath) => {
             const command: CommandType = await this.importFile(filePath);
             if (!command.name) return;
-            console.log(command);
 
             this.commands.set(command.name, command);
             slashCommands.push(command);
         });
-
+        
         this.on('ready', () => {
             this.registerCommands({
                 commands: slashCommands,
@@ -60,8 +58,8 @@ export class ExtendedClient extends Client {
         });
 
         // Event
-        const eventFiles: any = await globPromise(
-            `${__dirname}/../events/*{.ts,.js}`, {}
+        const eventFiles: any = await glob(
+            `${__dirname}/../events/*{.ts,.js}`, { windowsPathsNoEscape: true }
         );
         eventFiles.forEach(async (filePath) => {
             const event: Event<keyof ClientEvents> = await this.importFile(
