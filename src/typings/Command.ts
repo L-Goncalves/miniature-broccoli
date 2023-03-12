@@ -4,8 +4,8 @@ import {
     CommandInteractionOptionResolver,
     GuildMember,
     PermissionResolvable
-} from "discord.js";
-import { ExtendedClient } from "../structures/Client";
+} from 'discord.js';
+import { ExtendedClient } from '../structures/Client';
 
 /**
  * {
