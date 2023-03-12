@@ -5,6 +5,7 @@ export default new Command({
     name: 'sell',
     description: 'Venda sua conta',
     run: async ({ interaction }) => {
+
         const options = [
             {
                 label: 'Overwatch 2',
@@ -17,16 +18,18 @@ export default new Command({
                 value: 'GTAVONLINE'
             }
         ];
-
+    
         const selectMenu: any = new ActionRowBuilder().setComponents(
-            new StringSelectMenuBuilder().setCustomId('options').setOptions(options).setPlaceholder('Nenhum Jogo Selecionado.')
+            new StringSelectMenuBuilder().setCustomId('game_options')
+                .setOptions(options).setPlaceholder('Nenhum Jogo Selecionado.')
         );
-        
-
-        
-        interaction.editReply({
+            
+    
+            
+        interaction.followUp({
+            content: 'Selecione um Jogo para Vender sua Conta',
             components: [selectMenu.toJSON()]
-        });
+        }); 
      
     }
 });
