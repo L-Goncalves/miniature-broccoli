@@ -19,61 +19,21 @@ export async function handleOverwatchRole(interaction: AnySelectMenuInteraction<
 
 
     const selectMenu: any = new ActionRowBuilder().setComponents(
-        new StringSelectMenuBuilder().setCustomId('role_options_ow2').setOptions(options).setPlaceholder('Nenhuma Role Selecionada.')
+        new StringSelectMenuBuilder().setCustomId('role_options_ow2').setMaxValues(3).setOptions(options).setPlaceholder('Nenhuma Role Selecionada.')
     );
-        
-    await interaction.followUp({
-        content: 'Selecione a Role:',
-        components: [selectMenu.toJSON()]
-    });
-}
 
+ 
+    const newMessage = interaction.update({ content: `Conta: ${interaction.values[0]}. Selecione as Roles que tem rank:`, components: [selectMenu] });
 
-export async function handleOverwatchRank(interaction: AnySelectMenuInteraction<CacheType>) {
-    const options = [
-        {
-            label: 'Grandmaster',
-            value: 'GM',
-        },
-        {
-            label: 'Masters',
-            value: 'M',
-        },
-        {
-            label: 'Diamond',
-            value: 'D',
-        },
-        {
-            label: 'Plat',
-            value: 'P',
-        },
-        {
-            label: 'Gold',
-            value: 'G',
-        },
-        {
-            label: 'Silver',
-            value: 'S',
-        },
-        {
-            label: 'Bronze',
-            value: 'B',
-        },
-        {
-            label: 'No Rank',
-            value: 'NORANK',
-        },
+    const filter = (interaction: { isSelectMenu: () => any; customId: string; }) =>
+        interaction.isSelectMenu() && interaction.customId === 'role_options_ow2';
+    const collector = (await newMessage).createMessageComponentCollector({ filter, time: 60000 });
         
-        
-    ];
+    collector.on('collect', (interaction) => {
 
-
-    const selectMenu: any = new ActionRowBuilder().setComponents(
-        new StringSelectMenuBuilder().setCustomId('role_rank_options_ow2').setOptions(options).setPlaceholder('Nenhum Jogo Selecionado.')
-    );
-        
-    await interaction.followUp({
-        content: 'Selecione o Rank:',
-        components: [selectMenu.toJSON()]
+        // Handle the interaction
+        if (interaction.isStringSelectMenu()) {
+            // handleOverwatchRank(interaction);
+        } 
     });
 }
