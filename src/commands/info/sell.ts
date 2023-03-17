@@ -10,12 +10,10 @@ export default new Command({
         const options = [
             {
                 label: 'Overwatch 2',
-                description: 'Overwatch 2 é um jogo de FPS ',
                 value: 'Overwatch2'
             },
             {
                 label: 'GTA V ONLINE',
-                description: 'GTA V ONLINE é um Jogo de mundo aberto',
                 value: 'GTAVONLINE'
             }
         ];
