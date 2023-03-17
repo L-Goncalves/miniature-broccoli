@@ -1,6 +1,6 @@
 import { ActionRowBuilder, StringSelectMenuBuilder } from 'discord.js';
 import { Command } from '../../structures/Command';
-import { handleOverwatchRole } from '../../selects/overwatch';
+import { handleOverwatchRole } from '../../handler/overwatch';
 
 export default new Command({
     name: 'sell',
